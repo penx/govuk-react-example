@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, InputField } from 'govuk-react';
+import { Button, InputField, Layout, GridRow, GridCol } from 'govuk-react';
 
 // based on https://codesandbox.io/s/40mr0v2r87
 // const DateInputAdapter = ({ input, meta, ...rest }) => (
@@ -12,22 +12,21 @@ import { Button, InputField } from 'govuk-react';
 //   />
 // );
 
-const InputFieldAdapter = ({
-  children, input, meta, ...rest
-}) => (
-  <InputField
-    {...input}
-    {...rest}
-    onChange={(event, value) => {
-      console.log('input hi', input);
-      console.log('value', value);
-      input.onChange(value);
-    }}
-    errorText={meta.touched ? meta.error : ''}
-  >
-    {children}
-  </InputField>
-);
+// const InputFieldAdapter = ({
+//   children, input, meta, ...rest
+// }) => (
+//   <InputField
+//     {...input}
+//     {...rest}
+//     onChange={(event) => {
+//       console.log(event);
+//       input.onChange(event.target.value);
+//     }}
+//     errorText={meta.touched ? meta.error : ''}
+//   >
+//     {children}
+//   </InputField>
+// );
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -38,15 +37,6 @@ const onSubmit = async (values) => {
 
 const required = value => (value ? undefined : 'Required');
 
-// InputFieldAdapter.defaultProps = {
-//   meta: null,
-// };
-//
-// InputFieldAdapter.propTypes = {
-//   input: PropTypes.object.isRequired,
-//   meta: PropTypes.object,
-// };
-
 
 const App = () => (
   <div>
@@ -56,22 +46,18 @@ const App = () => (
  handleSubmit, reset, submitting, pristine, values,
 }) => (
   <form onSubmit={handleSubmit}>
-    <div>
-      <div>
-        <div>
+    <Layout>
+      <GridRow>
+        <GridCol>
           <Field
-            name="drg"
-            component={InputFieldAdapter}
+            name="firstName"
+            component={InputField}
             validate={required}
           >
-            Name
+            First name
           </Field>
-          {/*  <Field
-            name="firstName"
-            component="input"
-            validate={required} /> */}
-        </div>
-      </div>
+        </GridCol>
+      </GridRow>
       {/* <div>
         <div>
           <Field
@@ -85,30 +71,32 @@ const App = () => (
           </Field>
         </div>
       </div> */}
-      <div>
-        <div>
-          <button type="submit" disabled={submitting}>
+      <GridRow>
+        <GridCol columnOneQuarter>
+          <Button type="submit" disabled={submitting}>
             Log In
-          </button>
-        </div>
-        <div>
-          <Button onClick={reset} disabled={submitting || pristine}>reset x</Button>
+          </Button>
+        </GridCol>
+        <GridCol columnOneQuarter>
+          <Button onClick={reset} disabled={submitting || pristine}>
+            Reset
+          </Button>
           {/* <button
             type="button"
             onClick={reset}
             disabled={submitting || pristine}>
             Reset
           </button> */}
-        </div>
-        <div />
-        <div />
-      </div>
-      <div>
-        <div>
+        </GridCol>
+        <GridCol columnOneQuarter />
+        <GridCol columnOneQuarter />
+      </GridRow>
+      <GridRow>
+        <GridCol>
           <pre>{JSON.stringify(values, 0, 2)}</pre>
-        </div>
-      </div>
-    </div>
+        </GridCol>
+      </GridRow>
+    </Layout>
   </form>
       )}
     />
