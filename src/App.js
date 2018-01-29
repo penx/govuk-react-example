@@ -12,22 +12,22 @@ import { Button, InputField } from 'govuk-react';
 //   />
 // );
 
-const InputFieldAdapter = ({
-  children, input, meta, ...rest
-}) => (
-  <InputField
-    {...input}
-    {...rest}
-    onChange={(event, value) => {
-      console.log('input hi', input);
-      console.log('value', value);
-      input.onChange(value);
-    }}
-    errorText={meta.touched ? meta.error : ''}
-  >
-    {children}
-  </InputField>
-);
+// const InputFieldAdapter = ({
+//   children, input, meta, ...rest
+// }) => (
+//   <InputField
+//     {...input}
+//     {...rest}
+//     onChange={(event, value) => {
+//       console.log('input hi', input);
+//       console.log('value', value);
+//       input.onChange(value);
+//     }}
+//     errorText={meta.touched ? meta.error : ''}
+//   >
+//     {children}
+//   </InputField>
+// );
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -61,7 +61,7 @@ const App = () => (
         <div>
           <Field
             name="drg"
-            component={InputFieldAdapter}
+            component={InputField}
             validate={required}
           >
             Name
