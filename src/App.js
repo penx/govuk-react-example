@@ -19,7 +19,7 @@ const InputFieldAdapter = ({
     {...input}
     {...rest}
     onChange={(event, value) => {
-      console.log('input', input);
+      console.log('input hi', input);
       console.log('value', value);
       input.onChange(value);
     }}
