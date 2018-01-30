@@ -1,32 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, InputField, Layout, GridRow, GridCol } from 'govuk-react';
-
-// based on https://codesandbox.io/s/40mr0v2r87
-// const DateInputAdapter = ({ input, meta, ...rest }) => (
-//   <DateInput
-//     {...input}
-//     {...rest}
-//     onChange={(event, value) => input.onChange(value)}
-//     errorText={meta.touched ? meta.error : ''}
-//   />
-// );
-
-// const InputFieldAdapter = ({
-//   children, input, meta, ...rest
-// }) => (
-//   <InputField
-//     {...input}
-//     {...rest}
-//     onChange={(event) => {
-//       console.log(event);
-//       input.onChange(event.target.value);
-//     }}
-//     errorText={meta.touched ? meta.error : ''}
-//   >
-//     {children}
-//   </InputField>
-// );
+import { Button, InputField, TextArea, Layout, GridRow, GridCol } from 'govuk-react';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -58,19 +32,18 @@ const App = () => (
           </Field>
         </GridCol>
       </GridRow>
-      {/* <div>
-        <div>
+      <GridRow>
+        <GridCol>
           <Field
-            name="dob"
-            component={DateInputAdapter}
+            name="description"
+            component={TextArea}
             validate={required}
-            hintText="31 3 1980"
-            labelPosition="right"
+            hint="Any other information you want to provide"
           >
-          Date of birth
+            Description
           </Field>
-        </div>
-      </div> */}
+        </GridCol>
+      </GridRow>
       <GridRow>
         <GridCol columnOneQuarter>
           <Button type="submit" disabled={submitting}>
@@ -81,12 +54,6 @@ const App = () => (
           <Button onClick={reset} disabled={submitting || pristine}>
             Reset
           </Button>
-          {/* <button
-            type="button"
-            onClick={reset}
-            disabled={submitting || pristine}>
-            Reset
-          </button> */}
         </GridCol>
         <GridCol columnOneQuarter />
         <GridCol columnOneQuarter />
