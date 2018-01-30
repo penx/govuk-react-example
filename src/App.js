@@ -45,18 +45,16 @@ const App = () => (
         </GridCol>
       </GridRow>
       <GridRow>
-        <GridCol columnOneQuarter>
+        <GridCol>
           <Button type="submit" disabled={submitting}>
             Log In
           </Button>
         </GridCol>
-        <GridCol columnOneQuarter>
+        <GridCol>
           <Button onClick={reset} disabled={submitting || pristine}>
             Reset
           </Button>
         </GridCol>
-        <GridCol columnOneQuarter />
-        <GridCol columnOneQuarter />
       </GridRow>
       <GridRow>
         <GridCol>
