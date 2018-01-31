@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, TextArea, Radio, Select } from 'govuk-react';
+import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, TextArea, Radio } from 'govuk-react';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
