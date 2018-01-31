@@ -106,6 +106,24 @@ const App = () => (
       <GridRow>
         <GridCol>
           <Field
+            name="colour"
+            label="Favourite colour"
+            component={Select}
+            validate={required}
+          >
+            <option />
+            <option value="red">❤️ Red</option>
+            <option value="green">💚 Green</option>
+            <option value="blue">💙 Blue</option>
+            <option value="yellow">💛 Yellow</option>
+            <option value="orange">🧡 Orange</option>
+            <option value="purple">💜 Purple</option>
+          </Field>
+        </GridCol>
+      </GridRow>
+      <GridRow>
+        <GridCol>
+          <Field
             name="description"
             component={TextArea}
             validate={required}
