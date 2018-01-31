@@ -75,7 +75,7 @@ const App = () => (
             value="Tomato"
             type="checkbox"
           >
-            🍅  Tomato
+            Tomato
           </Field>
           <Field
             name="sauces"
@@ -83,7 +83,7 @@ const App = () => (
             value="Soy"
             type="checkbox"
           >
-            🍶 Soy
+            Soy
           </Field>
           <Field
             name="sauces"
@@ -91,7 +91,7 @@ const App = () => (
             value="Mint"
             type="checkbox"
           >
-            🌱 Mint
+            Mint
           </Field>
           <Field
             name="sauces"
@@ -99,7 +99,7 @@ const App = () => (
             value="Mustard"
             type="checkbox"
           >
-            🌭 Mustard
+            Mustard
           </Field>
         </GridCol>
       </GridRow>
@@ -112,12 +112,12 @@ const App = () => (
             validate={required}
           >
             <option />
-            <option value="red">❤️ Red</option>
-            <option value="green">💚 Green</option>
-            <option value="blue">💙 Blue</option>
-            <option value="yellow">💛 Yellow</option>
-            <option value="orange">🧡 Orange</option>
-            <option value="purple">💜 Purple</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="orange">Orange</option>
+            <option value="purple">Purple</option>
           </Field>
         </GridCol>
       </GridRow>
