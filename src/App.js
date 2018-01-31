@@ -75,7 +75,7 @@ const App = () => (
             value="Tomato"
             type="checkbox"
           >
-            🍅  Tomato
+            Tomato
           </Field>
           <Field
             name="sauces"
@@ -83,7 +83,7 @@ const App = () => (
             value="Soy"
             type="checkbox"
           >
-            🍶 Soy
+            Soy
           </Field>
           <Field
             name="sauces"
@@ -91,7 +91,7 @@ const App = () => (
             value="Mint"
             type="checkbox"
           >
-            🌱 Mint
+            Mint
           </Field>
           <Field
             name="sauces"
@@ -99,7 +99,7 @@ const App = () => (
             value="Mustard"
             type="checkbox"
           >
-            🌭 Mustard
+            Mustard
           </Field>
         </GridCol>
       </GridRow>
