@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, TextArea, Radio, Select } from 'govuk-react';
+import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, MultiChoice, TextArea, Radio, Select } from 'govuk-react';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -11,6 +11,32 @@ const onSubmit = async (values) => {
 
 const required = value => (value ? undefined : 'Required');
 
+const RadioGroup = ({ label, hint, name, validate, input }) => (
+  <React.Fragment>
+    <MultiChoice label={label} hint={hint} {...input}>
+      <Field
+        name={name}
+        component={Radio}
+        value="Yes"
+        type="radio"
+        validate={validate}
+        inline
+      >
+        Yes
+      </Field>
+      <Field
+        name={name}
+        component={Radio}
+        value="No"
+        type="radio"
+        validate={validate}
+        inline
+      >
+        No
+      </Field>
+    </MultiChoice>
+  </React.Fragment>
+);
 
 const App = () => (
   <div>
@@ -45,25 +71,12 @@ const App = () => (
       </GridRow>
       <GridRow>
         <GridCol>
-          <LabelText>Do you like animals?</LabelText>
-          <Field
+          <RadioGroup
             name="likesAnimals"
-            component={Radio}
-            value="Yes"
-            type="radio"
-            inline
-          >
-            Yes
-          </Field>
-          <Field
-            name="likesAnimals"
-            component={Radio}
-            value="No"
-            type="radio"
-            inline
-          >
-            No
-          </Field>
+            label="Do you like animals?"
+            hint="this is the hint text"
+            validate={required}
+          />
         </GridCol>
       </GridRow>
       <GridRow>
