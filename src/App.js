@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, TextArea, Radio, Select } from 'govuk-react';
+import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, MultiChoice, TextArea, Radio, Select } from 'govuk-react';
+import PropTypes from 'prop-types';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -11,6 +12,46 @@ const onSubmit = async (values) => {
 
 const required = value => (value ? undefined : 'Required');
 
+const RadioGroup = ({
+  label, hint, options, inline, input, meta,
+}) => (
+  <div>
+    <MultiChoice label={label} hint={hint} meta={meta}>
+      {options.map(o => (
+        <div key={o.value}>
+          <Radio
+            {...input}
+            value={o.value}
+            inline={inline}
+            checked={o.value === input.value}
+          >
+            {o.title}
+          </Radio>
+        </div>
+      ))}
+    </MultiChoice>
+  </div>
+);
+
+RadioGroup.defaultProps = {
+  input: {},
+  meta: {},
+  hint: undefined,
+  inline: false,
+  options: {},
+};
+
+RadioGroup.propTypes = {
+  input: PropTypes.shape({}),
+  meta: PropTypes.shape({}),
+  label: PropTypes.string.isRequired,
+  hint: PropTypes.string,
+  inline: PropTypes.bool,
+  options: PropTypes.shape({
+    title: PropTypes.string,
+    value: PropTypes.string,
+  }),
+};
 
 const App = () => (
   <div>
@@ -45,25 +86,18 @@ const App = () => (
       </GridRow>
       <GridRow>
         <GridCol>
-          <LabelText>Do you like animals?</LabelText>
           <Field
             name="likesAnimals"
-            component={Radio}
-            value="Yes"
-            type="radio"
+            label="Do you like animals?"
+            hint="You must tell us"
+            component={RadioGroup}
+            options={[
+              { title: 'Yep', value: 'yes' },
+              { title: 'Nope', value: 'no' },
+            ]}
+            validate={required}
             inline
-          >
-            Yes
-          </Field>
-          <Field
-            name="likesAnimals"
-            component={Radio}
-            value="No"
-            type="radio"
-            inline
-          >
-            No
-          </Field>
+          />
         </GridCol>
       </GridRow>
       <GridRow>
