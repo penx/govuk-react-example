@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, Checkbox, GridCol, GridRow, InputField, LabelText, Layout, MultiChoice, TextArea, Radio, Select } from 'govuk-react';
+import { Button, Checkbox, FileUpload, GridCol, GridRow, InputField, Layout, MultiChoice, TextArea, Radio, Select } from 'govuk-react';
 import PropTypes from 'prop-types';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -18,16 +18,15 @@ const RadioGroup = ({
   <div>
     <MultiChoice label={label} hint={hint} meta={meta}>
       {options.map(o => (
-        <div key={o.value}>
-          <Radio
-            {...input}
-            value={o.value}
-            inline={inline}
-            checked={o.value === input.value}
-          >
-            {o.title}
-          </Radio>
-        </div>
+        <Radio
+          key={o.value}
+          {...input}
+          value={o.value}
+          inline={inline}
+          checked={o.value === input.value}
+        >
+          {o.title}
+        </Radio>
       ))}
     </MultiChoice>
   </div>
@@ -52,6 +51,63 @@ RadioGroup.propTypes = {
     value: PropTypes.string,
   }),
 };
+
+class CheckboxGroup extends React.Component {
+  static defaultProps = {
+    hint: undefined,
+  };
+
+  static propTypes = {
+    hint: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })).isRequired,
+  };
+
+  field = ({
+    input, meta, label, hint, options,
+  }) => {
+    const { name, onChange } = input;
+    const { touched, error } = meta;
+    const inputValue = input.value;
+
+    const checkboxes = options.map(({ title, value }) => {
+      const handleChange = (event) => {
+        const arr = [...inputValue];
+        console.log('event.target.checked',event.target.checked);
+        if (event.target.checked) {
+          arr.push(value);
+        } else {
+          arr.splice(arr.indexOf(value), 1);
+        }
+        return onChange(arr);
+      };
+      const checked = inputValue.includes(value);
+      return (
+        <Checkbox
+          key={value}
+          value={value}
+          checked={checked}
+          onChange={handleChange}
+        >
+          {title}
+        </Checkbox>
+      );
+    });
+
+    return (
+      <MultiChoice label={label} hint={hint} meta={meta} >
+        {checkboxes}
+      </MultiChoice>
+    );
+  };
+
+  render() {
+    return <Field {...this.props} type="checkbox" component={this.field} />;
+  }
+}
 
 const App = () => (
   <div>
@@ -102,39 +158,18 @@ const App = () => (
       </GridRow>
       <GridRow>
         <GridCol>
-          <LabelText>What types of sauces do you like?</LabelText>
-          <Field
+          <CheckboxGroup
             name="sauces"
-            component={Checkbox}
-            value="Tomato"
-            type="checkbox"
-          >
-            Tomato
-          </Field>
-          <Field
-            name="sauces"
-            component={Checkbox}
-            value="Soy"
-            type="checkbox"
-          >
-            Soy
-          </Field>
-          <Field
-            name="sauces"
-            component={Checkbox}
-            value="Mint"
-            type="checkbox"
-          >
-            Mint
-          </Field>
-          <Field
-            name="sauces"
-            component={Checkbox}
-            value="Mustard"
-            type="checkbox"
-          >
-            Mustard
-          </Field>
+            label="What sauces do you like?"
+            hint="come get some sauce"
+            validate={required}
+            options={[
+            { title: 'Tomato', value: 'tomato' },
+            { title: 'Soy', value: 'soy' },
+            { title: 'Mint', value: 'mint' },
+            { title: 'Mustard', value: 'mustard' },
+          ]}
+          />
         </GridCol>
       </GridRow>
       <GridRow>
@@ -165,6 +200,18 @@ const App = () => (
           >
             Description
           </Field>
+        </GridCol>
+      </GridRow>
+      <GridRow>
+        <GridCol>
+          <Field
+            name="group1"
+            acceptedFormats=".jpg, .png"
+            hintText="This can be in either JPG or PNG format"
+            label="Upload a photo"
+            component={FileUpload}
+            validate={required}
+          />
         </GridCol>
       </GridRow>
       <GridRow>
