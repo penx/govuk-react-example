@@ -95,14 +95,12 @@ class CheckboxGroup extends React.Component {
   field = ({
     input, meta, label, hint, options,
   }) => {
-    const { name, onChange } = input;
-    const { touched, error } = meta;
+    const { onChange } = input;
     const inputValue = input.value;
 
     const checkboxes = options.map(({ title, value }) => {
       const handleChange = (event) => {
         const arr = [...inputValue];
-        console.log('event.target.checked', event.target.checked);
         if (event.target.checked) {
           arr.push(value);
         } else {
@@ -152,14 +150,13 @@ const App = () => (
             <AnchorTag href="#unorderedList">Unordered list</AnchorTag>
             <AnchorTag href="#formfields">Form fields</AnchorTag>
             <ListNavigation>
-              <AnchorTag href="#input_type_text">Input type="text"</AnchorTag>
-              <AnchorTag href="#input_type_radio">Input type="radio"</AnchorTag>
-              <AnchorTag href="#input_type_checkbox">Input type="checkbox"</AnchorTag>
-              <AnchorTag href="#input_type_file">Input type="file"</AnchorTag>
+              <AnchorTag href="#input_type_text">Input type=text</AnchorTag>
+              <AnchorTag href="#input_type_radio">Input type=radio</AnchorTag>
+              <AnchorTag href="#input_type_checkbox">Input type=checkbox</AnchorTag>
+              <AnchorTag href="#input_type_file">Input type=file</AnchorTag>
               <AnchorTag href="#dateInput">Date input</AnchorTag>
               <AnchorTag href="#select_dropdown">Select dropdown</AnchorTag>
               <AnchorTag href="#textarea">Textarea</AnchorTag>
-
             </ListNavigation>
           </ListNavigation>
           <hr />
@@ -190,10 +187,10 @@ const App = () => (
           <Button>Standard button</Button>
         </GridCol>
         <GridCol>
-          <Button iconUrl='https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png'>Proceed w/icon</Button>
+          <Button iconUrl="https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png">Proceed w/icon</Button>
         </GridCol>
         <GridCol>
-          <Button start iconUrl='https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png'>Start w/icon</Button>
+          <Button start iconUrl="https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png">Start w/icon</Button>
         </GridCol>
         <GridCol>
           <Button start>Start button</Button>
@@ -204,10 +201,10 @@ const App = () => (
           <Button disabled>[disabled] Standard button</Button>
         </GridCol>
         <GridCol>
-          <Button disabled iconUrl='https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png'>[disabled] Proceed w/icon</Button>
+          <Button disabled iconUrl="https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png">[disabled] Proceed w/icon</Button>
         </GridCol>
         <GridCol>
-          <Button disabled start iconUrl='https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png'>[disabled] Start w/icon</Button>
+          <Button disabled start iconUrl="https://penx.github.io/govuk-react/static/media/icon-pointer.30e6c548.png">[disabled] Start w/icon</Button>
         </GridCol>
         <GridCol>
           <Button disabled start>[disabled] Start button</Button>
@@ -298,7 +295,7 @@ const App = () => (
       <GridRow>
         <GridCol>
           <Header id="formfields" level="2">Form fields</Header>
-          <Header id="input_type_text" level="3">Input type="text"</Header>
+          <Header id="input_type_text" level="3">Input type=text</Header>
           <Field
             name="firstName"
             component={InputField}
@@ -321,7 +318,7 @@ const App = () => (
       </GridRow>
       <GridRow>
         <GridCol>
-          <Header id="input_type_radio" level="3">Input type="radio"</Header>
+          <Header id="input_type_radio" level="3">Input type=radio</Header>
           <Field
             name="likesAnimals"
             label="Do you like animals?"
@@ -338,7 +335,7 @@ const App = () => (
       </GridRow>
       <GridRow>
         <GridCol>
-          <Header id="input_type_checkbox" level="3">Input type="checkbox"</Header>
+          <Header id="input_type_checkbox" level="3">Input type=checkbox</Header>
           <CheckboxGroup
             name="sauces"
             label="What sauces do you like?"
