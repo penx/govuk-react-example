@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@govuk-react/icon-crown": "0.0.5",
     "emotion": "^9.1.3",
     "final-form": "^4.2.0",
     "glamor": "^2.20.40",
