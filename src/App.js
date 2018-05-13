@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Form, Field } from 'react-final-form';
 import {
   asAnchor,
@@ -8,17 +10,15 @@ import {
   Header,
   TextArea,
   Select,
-  FileUpload,
   PhaseBanner,
   Button,
 } from 'govuk-react';
 
 import CrownIcon from '@govuk-react/icon-crown';
 
-import TopNav, { IconTitle } from '@govuk-react/top-nav';
-import PropTypes from 'prop-types';
+import TopNav from '@govuk-react/top-nav';
 
-import { BREAKPOINTS, SPACING } from '@govuk-react/constants';
+import { BREAKPOINTS } from '@govuk-react/constants';
 
 import styled from 'react-emotion';
 
@@ -38,7 +38,7 @@ const Layout = styled('div')({
 });
 
 const ButtonGroup = styled('div')({
-  display: 'flex'
+  display: 'flex',
 });
 
 Layout.propTypes = {
@@ -50,75 +50,74 @@ const AnchorTag = asAnchor('a');
 const App = () => (
   <React.Fragment>
     <TopNav company={
-      <IconTitle
+      <TopNav.IconTitle
         icon={<CrownIcon width="36" height="32" />}
       >
         GOV.UK
-      </IconTitle>}
+      </TopNav.IconTitle>}
     />
     <Layout>
-      <PhaseBanner level="alpha">This is an example usage of govuk-react.</PhaseBanner>
+      <PhaseBanner level="alpha">This is an example usage of govuk-react</PhaseBanner>
       <Breadcrumb>
         <AnchorTag href="/">Home</AnchorTag>
-        <AnchorTag href="/examples">GOV.UK React examples</AnchorTag>
+        <AnchorTag href="/examples">Example</AnchorTag>
       </Breadcrumb>
-      <Header>GovUK React example</Header>
-
+      <Header>Example</Header>
       <Form
         onSubmit={onSubmit}
         render={({
- handleSubmit, reset, submitting, pristine, values,
-}) => (
-  <form onSubmit={handleSubmit}>
-    <Field
-      name="firstName"
-      component={InputField}
-      validate={required}
-    >
-      First name
-    </Field>
-    <Field
-      name="lastName"
-      component={InputField}
-      validate={required}
-    >
-            Last name
-    </Field>
-    <DateInput hintText="For example, dd mm yyyy">
-            What is your date of birth?
-    </DateInput>
-    <Field
-      name="colour"
-      label="Favourite colour"
-      component={Select}
-      validate={required}
-    >
-      <option />
-      <option value="red">Red</option>
-      <option value="green">Green</option>
-      <option value="blue">Blue</option>
-      <option value="yellow">Yellow</option>
-      <option value="orange">Orange</option>
-      <option value="purple">Purple</option>
-    </Field>
-    <Field
-      name="description"
-      component={TextArea}
-      validate={required}
-      hint="Any other information you want to provide"
-    >
-            Description
-    </Field>
-    <ButtonGroup>
-      <Button type="submit" disabled={submitting}>
-              Log In
-      </Button>
-      <Button onClick={reset} disabled={submitting || pristine}>
-              Reset
-      </Button>
-    </ButtonGroup>
-    {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
-  </form>)}
+          handleSubmit, reset, submitting, pristine, values,
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <Field
+              name="firstName"
+              component={InputField}
+              validate={required}
+            >
+              First name
+            </Field>
+            <Field
+              name="lastName"
+              component={InputField}
+              validate={required}
+            >
+              Last name
+            </Field>
+            <DateInput hintText="For example, dd mm yyyy">
+              What is your date of birth?
+            </DateInput>
+            <Field
+              name="colour"
+              label="Favourite colour"
+              component={Select}
+              validate={required}
+            >
+              <option />
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="yellow">Yellow</option>
+              <option value="orange">Orange</option>
+              <option value="purple">Purple</option>
+            </Field>
+            <Field
+              name="description"
+              component={TextArea}
+              validate={required}
+              hint="Any other information you want to provide"
+            >
+              Description
+            </Field>
+            <ButtonGroup>
+              <Button type="submit" disabled={submitting}>
+                Register
+              </Button>
+              <Button onClick={reset} disabled={submitting || pristine}>
+                Reset
+              </Button>
+            </ButtonGroup>
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
+          </form>)}
       />
     </Layout>
 
